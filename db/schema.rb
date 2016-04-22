@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160408141327) do
+ActiveRecord::Schema.define(version: 20160421145157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,5 +26,19 @@ ActiveRecord::Schema.define(version: 20160408141327) do
 
   add_index "regions", ["crest_id"], name: "index_regions_on_crest_id", using: :btree
   add_index "regions", ["name"], name: "index_regions_on_name", using: :btree
+
+  create_table "systems", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "region_id"
+    t.string   "crest_url"
+    t.integer  "crest_id"
+    t.decimal  "security_status", precision: 2, scale: 1
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
+  add_index "systems", ["crest_id"], name: "index_systems_on_crest_id", using: :btree
+  add_index "systems", ["name"], name: "index_systems_on_name", using: :btree
+  add_index "systems", ["region_id"], name: "index_systems_on_region_id", using: :btree
 
 end
