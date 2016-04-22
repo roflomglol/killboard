@@ -8,6 +8,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 
+gem 'ruby-progressbar'
+
 group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'

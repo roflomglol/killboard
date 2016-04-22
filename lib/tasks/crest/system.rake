@@ -3,33 +3,43 @@ CONSTELLATIONS_URL = 'https://public-crest.eveonline.com/constellations/'.freeze
 namespace :crest do
   namespace :system do
     task import: :environment do
-      Rake::Task['crest:region:import'].execute
+      Rake::Task['crest:region:import'].invoke
 
-      uri = URI(CONSTELLATIONS_URL)
-      response = Net::HTTP.get(uri)
+      uri           = URI(CONSTELLATIONS_URL)
+      response      = Net::HTTP.get(uri)
       json_response = JSON.parse(response)
+      progress_bar  = ProgressBar.create(title: 'Parsing constellations',
+                                         total: json_response.fetch('items').size,
+                                         format: '%t, %c/%C: |%B|')
 
       json_response.fetch('items').map{ |constellation| constellation.fetch('href') }.each do |constellation_url|
-        constellation_uri = URI(constellation_url)
-        constellation_response = Net::HTTP.get(constellation_uri)
-        constellation_json_response = JSON.parse(constellation_response)
-        constellation_region = Region.find_by!(crest_id: constellation_json_response.fetch('region').fetch('href')[/\d+/])
-
-        constellation_json_response.fetch('systems').map{ |system| system.fetch('href') }.each do |system_url|
-          next if System.find_by(crest_url: system_url)
-
-          system_uri = URI(system_url)
-          system_response = Net::HTTP.get(system_uri)
-          system_json_response = JSON.parse(system_response)
-
-          System.create_with(name: system_json_response['name'],
-                             security_status: system_json_response['securityStatus'].round(1),
-                             crest_url: system_json_response['href'],
-                             region: constellation_region).find_or_create_by(crest_id: system_json_response['id'])
-        end
-
-        puts "All systems from constellation #{constellation_url} are imported"
+        parse_constellation(constellation_url)
+        progress_bar.increment
       end
     end
   end
+end
+
+def parse_constellation(constellation_url)
+  uri           = URI(constellation_url)
+  response      = Net::HTTP.get(uri)
+  json_response = JSON.parse(response)
+  region        = Region.find_by!(crest_id: json_response.fetch('region').fetch('href')[/\d+/])
+
+  json_response.fetch('systems').map{ |system| system.fetch('href') }.each do |system_url|
+    parse_system(system_url, region)
+  end
+end
+
+def parse_system(system_url, region)
+  return if System.find_by(crest_url: system_url)
+
+  uri           = URI(system_url)
+  response      = Net::HTTP.get(uri)
+  json_response = JSON.parse(response)
+
+  System.create_with(name: json_response['name'],
+                     security_status: json_response['securityStatus'].round(1),
+                     crest_url: json_response['href'],
+                     region: region).find_or_create_by(crest_id: json_response['id'])
 end
