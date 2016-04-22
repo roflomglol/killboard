@@ -1,9 +1,9 @@
-URL = 'https://public-crest.eveonline.com/regions/'
+REGIONS_URL = 'https://public-crest.eveonline.com/regions/'.freeze
 
 namespace :crest do
   namespace :region do
     task import: :environment do
-      uri = URI(URL)
+      uri = URI(REGIONS_URL)
       response = Net::HTTP.get(uri)
       json_response = JSON.parse(response)
 
