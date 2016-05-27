@@ -8,6 +8,7 @@ namespace :crest do
       uri           = URI(CONSTELLATIONS_URL)
       response      = Net::HTTP.get(uri)
       json_response = JSON.parse(response)
+
       progress_bar  = ProgressBar.create(title: 'Parsing constellations',
                                          total: json_response.fetch('items').size,
                                          format: '%t, %c/%C: |%B|')
@@ -38,8 +39,8 @@ def parse_system(system_url, region)
   response      = Net::HTTP.get(uri)
   json_response = JSON.parse(response)
 
-  System.create_with(name: json_response['name'],
-                     security_status: json_response['securityStatus'].round(1),
-                     crest_url: json_response['href'],
-                     region: region).find_or_create_by(crest_id: json_response['id'])
+  System.create_with(name: json_response.fetch('name'),
+                     security_status: json_response.fetch('securityStatus').round(1),
+                     crest_url: json_response.fetch('href'),
+                     region: region).find_or_create_by(crest_id: json_response.fetch('id'))
 end
