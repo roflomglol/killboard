@@ -1,4 +1,4 @@
-REGIONS_URL = 'https://public-crest.eveonline.com/regions/'.freeze
+REGIONS_URL = 'https://crest-tq.eveonline.com/regions/'.freeze
 
 namespace :crest do
   namespace :region do

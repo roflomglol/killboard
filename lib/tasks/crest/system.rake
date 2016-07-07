@@ -1,4 +1,4 @@
-CONSTELLATIONS_URL = 'https://public-crest.eveonline.com/constellations/'.freeze
+CONSTELLATIONS_URL = 'https://crest-tq.eveonline.com/constellations/'.freeze
 
 namespace :crest do
   namespace :system do
