@@ -3,7 +3,7 @@ class Killmail::Parser
 
   def initialize(body)
     @body = body
-    @victim_parser = VictimParser.new
+    @victim_parser = Killmail::VictimParser.new
   end
 
   def parse

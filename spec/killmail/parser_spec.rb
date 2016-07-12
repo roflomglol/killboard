@@ -9,7 +9,7 @@ RSpec.describe Killmail::Parser do
 
     it { is_expected.to be_a Hash }
 
-    describe ':killed_at' do
+    describe 'key :killed_at' do
       it 'must have a key :killed_at' do
         expect{ subject.fetch(:killed_at) }.not_to raise_error
       end
@@ -17,6 +17,10 @@ RSpec.describe Killmail::Parser do
       it 'must be the killmail date' do
         expect(subject.fetch(:killed_at)).to eq('2016.07.02 19:12:41')
       end
+    end
+
+    describe 'key :victim' do
+      it { is_expected.to have_key(:victim) }
     end
   end
 end
