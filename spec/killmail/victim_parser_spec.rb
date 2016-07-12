@@ -21,65 +21,49 @@ RSpec.describe Killmail::VictimParser do
 
     it { is_expected.to be_a Hash }
 
-    describe ':victim' do
-      it { is_expected.to have_key(:victim) }
-
+    describe 'key :victim' do
       it "must be the victim's name" do
         expect(subject.fetch(:victim)).to eq('Forsaken Skipper')
       end
     end
 
-    describe ':corp' do
-      it { is_expected.to have_key(:corp) }
-
+    describe 'key :corp' do
       it "must be the victim's corporation" do
         expect(subject.fetch(:corp)).to eq('OEG')
       end
     end
 
-    describe ':alliance' do
-      it { is_expected.to have_key(:alliance) }
-
+    describe 'key :alliance' do
       it "must be the victim's corporation alliance" do
         expect(subject.fetch(:alliance)).to eq('Freedom Among the Stars')
       end
     end
 
-    describe ':faction' do
-      it { is_expected.to have_key(:faction) }
-
+    describe 'key :faction' do
       it "must be the victim's faction" do
         expect(subject.fetch(:faction)).to eq('None')
       end
     end
 
-    describe ':destroyed' do
-      it { is_expected.to have_key(:destroyed) }
-
+    describe 'key :destroyed' do
       it "must be the victim's destroyed ship" do
         expect(subject.fetch(:destroyed)).to eq('Talos')
       end
     end
 
-    describe ':system' do
-      it { is_expected.to have_key(:system) }
-
+    describe 'key :system' do
       it "must be the system where victim was killed" do
         expect(subject.fetch(:system)).to eq('N-M1A3')
       end
     end
 
-    describe ':security' do
-      it { is_expected.to have_key(:security) }
-
+    describe 'key :security' do
       it "must be the security level of system  where victim was killed" do
         expect(subject.fetch(:security)).to eq('0.0')
       end
     end
 
-    describe ':damage_taken' do
-      it { is_expected.to have_key(:damage_taken) }
-
+    describe 'key :damage_taken' do
       it "must be the damage taken by victim" do
         expect(subject.fetch(:damage_taken)).to eq('17215')
       end
