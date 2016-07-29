@@ -22,5 +22,12 @@ RSpec.describe Killmail::Parser do
     describe 'key :victim' do
       it { is_expected.to have_key(:victim) }
     end
+
+    describe 'key :involved_parties' do
+      it { is_expected.to have_key(:involved_parties) }
+      it 'must be an array of hashes' do
+        expect(subject.fetch(:involved_parties)).to all(be_a Hash)
+      end
+    end
   end
 end
