@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Killmail::InvolvedPartyParser do
+RSpec.describe Parsers::InvolvedPartyParser do
   let(:involved_party) do
     <<~EOS
       Name: Alestraza (laid the final blow)

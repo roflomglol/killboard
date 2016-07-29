@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Killmail::VictimParser do
+RSpec.describe Parsers::VictimParser do
   let(:victim_raw) do
     <<~EOS
       Victim: Forsaken Skipper

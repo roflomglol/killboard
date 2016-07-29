@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Killmail::Parser do
+RSpec.describe Parsers::KillmailParser do
   let(:killmail) { build(:killmail) }
   let(:parser) { described_class.new(killmail.body) }
 

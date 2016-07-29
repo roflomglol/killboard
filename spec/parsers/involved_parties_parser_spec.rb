@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Killmail::InvolvedPartiesParser do
+RSpec.describe Parsers::InvolvedPartiesParser do
   let(:involved_parties) do
     <<~EOS
       Name: Blood Monsignor / Blood Raiders
