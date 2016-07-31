@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -22,10 +21,9 @@ ActiveRecord::Schema.define(version: 20160421145157) do
     t.string   "crest_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["crest_id"], name: "index_regions_on_crest_id", using: :btree
+    t.index ["name"], name: "index_regions_on_name", using: :btree
   end
-
-  add_index "regions", ["crest_id"], name: "index_regions_on_crest_id", using: :btree
-  add_index "regions", ["name"], name: "index_regions_on_name", using: :btree
 
   create_table "systems", force: :cascade do |t|
     t.string   "name"
@@ -35,10 +33,9 @@ ActiveRecord::Schema.define(version: 20160421145157) do
     t.decimal  "security_status", precision: 2, scale: 1
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
+    t.index ["crest_id"], name: "index_systems_on_crest_id", using: :btree
+    t.index ["name"], name: "index_systems_on_name", using: :btree
+    t.index ["region_id"], name: "index_systems_on_region_id", using: :btree
   end
-
-  add_index "systems", ["crest_id"], name: "index_systems_on_crest_id", using: :btree
-  add_index "systems", ["name"], name: "index_systems_on_name", using: :btree
-  add_index "systems", ["region_id"], name: "index_systems_on_region_id", using: :btree
 
 end
