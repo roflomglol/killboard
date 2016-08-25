@@ -29,5 +29,19 @@ RSpec.describe Parsers::KillmailParser do
         expect(subject.fetch(:involved_parties)).to all(be_a Hash)
       end
     end
+
+    describe 'key :destroyed_items' do
+      it { is_expected.to have_key(:destroyed_items) }
+      it 'must be an array of hashes' do
+        expect(subject.fetch(:destroyed_items)).to all(be_a Hash)
+      end
+    end
+
+    describe 'key :dropped_items' do
+      it { is_expected.to have_key(:dropped_items) }
+      it 'must be an array of hashes' do
+        expect(subject.fetch(:dropped_items)).to all(be_a Hash)
+      end
+    end
   end
 end
