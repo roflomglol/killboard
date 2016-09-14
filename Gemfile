@@ -10,6 +10,7 @@ gem 'turbolinks'
 
 gem 'ruby-progressbar'
 gem 'unicorn'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'pry-byebug'
