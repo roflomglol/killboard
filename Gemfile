@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'ruby-progressbar'
+gem 'unicorn'
 
 group :development, :test do
   gem 'pry-byebug'
