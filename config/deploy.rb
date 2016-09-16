@@ -17,8 +17,10 @@ append :linked_dirs, 'log',
 
 set :rbenv_ruby, '2.3.1'
 set :rbenv_map_bins, %w(rake gem bundle ruby rails eye)
-set :bundle_bins, fetch(:bundle_bins, []).push('eye')
 
-after 'deploy:started', 'assets:precompile'
-after 'deploy:updated', 'assets:deliver'
-after 'deploy:restart', 'deploy:cleanup', 'eye:restart'
+set :bundle_bins, %w(rake)
+set :bundle_path, -> { shared_path.join('vendor/bundle') }
+
+set :eye_config, './config/eye.killboard'
+
+after 'deploy:restart', 'eye:restart'

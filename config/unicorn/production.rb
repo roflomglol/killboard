@@ -10,7 +10,7 @@ worker_processes 2
 timeout 30
 preload_app true
 
-listen '/tmp/unicorn.killboard.sock'
+listen "#{root}/tmp/sockets/unicorn.killboard.sock"
 
 # Force the bundler gemfile environment variable to
 # reference the capistrano "current" symlink
