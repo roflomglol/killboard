@@ -9,6 +9,8 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 gem 'ruby-progressbar'
+gem 'unicorn'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'pry-byebug'
@@ -19,6 +21,10 @@ end
 group :development do
   gem 'web-console', '~> 2.0'
   gem 'spring'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  gem 'capistrano-eye'
 end
 
 group :test do
