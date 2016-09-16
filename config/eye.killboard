@@ -11,18 +11,18 @@ Eye.application 'killboard' do
     'RAILS_ENV' => RAILS_ENV,
     'RBENV_ROOT' => '~/.rbenv/',
     'PATH' => "~/.rbenv/shims:~/.rbenv/bin:#{ENV['PATH']}",
-    'TMPDIR' => '/home/deploy/tmp'
+    'TMPDIR' => "#{ROOT_PATH}/tmp"
   )
 
   trigger :flapping, times: 10, within: 1.minute, retry_in: 10.minutes
   check :cpu, every: 10.seconds, below: 100, times: 3
 
   process 'unicorn' do
-    pid_file 'tmp/pids/unicorn.pid'
+    pid_file "#{ROOT_PATH}/tmp/pids/unicorn.pid"
     start_command "bundle exec unicorn -Dc #{ROOT_PATH}/config/unicorn/production.rb -E #{RAILS_ENV}"
     stop_command 'kill -QUIT {{PID}}'
     restart_command 'kill -USR2 {{PID}}'
-    stdall 'log/unicorn.log'
+    stdall "#{ROOT_PATH}/log/unicorn.log"
 
     start_timeout 50.seconds
     stop_grace 5.seconds
