@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Parsers::ItemParser do
-
   let(:basic_item) { 'Gist X-Type X-Large Shield Booster' }
   let(:parser) { described_class.new }
 
