@@ -9,7 +9,6 @@ class Pilot < ApplicationRecord
 
   # == Validations ==========================================================
   validates :name,        presence: true, uniqueness: true
-  validates :corporation, presence: true
   validates :alliance,    presence: true
   # == Scopes ===============================================================
 

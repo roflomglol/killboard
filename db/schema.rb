@@ -10,49 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160826102758) do
+ActiveRecord::Schema.define(version: 20170705201431) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "killmails", force: :cascade do |t|
-    t.text     "body"
+  create_table "killmails", id: :serial, force: :cascade do |t|
+    t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "pilots", force: :cascade do |t|
-    t.string   "name"
-    t.string   "corporation"
-    t.string   "alliance"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["alliance"], name: "index_pilots_on_alliance", using: :btree
-    t.index ["corporation"], name: "index_pilots_on_corporation", using: :btree
-    t.index ["name"], name: "index_pilots_on_name", unique: true, using: :btree
-  end
-
-  create_table "regions", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "crest_id"
-    t.string   "crest_url"
+  create_table "pilots", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.string "alliance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["crest_id"], name: "index_regions_on_crest_id", using: :btree
-    t.index ["name"], name: "index_regions_on_name", using: :btree
+    t.index ["alliance"], name: "index_pilots_on_alliance"
+    t.index ["name"], name: "index_pilots_on_name", unique: true
   end
 
-  create_table "systems", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "region_id"
-    t.string   "crest_url"
-    t.integer  "crest_id"
-    t.decimal  "security_status", precision: 2, scale: 1
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
-    t.index ["crest_id"], name: "index_systems_on_crest_id", using: :btree
-    t.index ["name"], name: "index_systems_on_name", using: :btree
-    t.index ["region_id"], name: "index_systems_on_region_id", using: :btree
+  create_table "regions", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.integer "crest_id"
+    t.string "crest_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crest_id"], name: "index_regions_on_crest_id"
+    t.index ["name"], name: "index_regions_on_name"
+  end
+
+  create_table "systems", id: :serial, force: :cascade do |t|
+    t.string "name"
+    t.integer "region_id"
+    t.string "crest_url"
+    t.integer "crest_id"
+    t.decimal "security_status", precision: 2, scale: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crest_id"], name: "index_systems_on_crest_id"
+    t.index ["name"], name: "index_systems_on_name"
+    t.index ["region_id"], name: "index_systems_on_region_id"
   end
 
 end
