@@ -8,7 +8,7 @@ class Pilot < ApplicationRecord
   # == Relationships ========================================================
 
   # == Validations ==========================================================
-  validates :name,        presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
   # == Scopes ===============================================================
 
   # == Callbacks ============================================================
