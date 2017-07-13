@@ -6,7 +6,7 @@ class Pilot < ApplicationRecord
   # == Extensions ===========================================================
 
   # == Relationships ========================================================
-
+  has_many :involved_parties
   # == Validations ==========================================================
   validates :name, presence: true, uniqueness: true
   # == Scopes ===============================================================

@@ -1,4 +1,4 @@
-class Killmail < ApplicationRecord
+class InvolvedParty < ApplicationRecord
   # == Constants ============================================================
 
   # == Attributes ===========================================================
@@ -6,9 +6,8 @@ class Killmail < ApplicationRecord
   # == Extensions ===========================================================
 
   # == Relationships ========================================================
-  belongs_to :victim, class_name: 'Pilot'
-
-  has_many :involved_parties
+  belongs_to :killmail
+  belongs_to :pilot
   # == Validations ==========================================================
 
   # == Scopes ===============================================================
