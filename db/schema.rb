@@ -10,16 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170705203005) do
+ActiveRecord::Schema.define(version: 20170713132008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "involvements", force: :cascade do |t|
+    t.integer "pilot_id"
+    t.integer "killmail_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "killmails", id: :serial, force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "victim_id"
+    t.integer "origin_id"
   end
 
   create_table "pilots", id: :serial, force: :cascade do |t|
