@@ -11,6 +11,8 @@ gem 'unicorn'
 
 gem 'pg', '~> 0.18'
 
+gem 'nokogiri'
+
 gem 'ruby-progressbar'
 
 group :development, :test do
