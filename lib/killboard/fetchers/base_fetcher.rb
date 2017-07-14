@@ -4,10 +4,13 @@ module Fetchers
 
     self.host = 'https://api.eveonline.com'.freeze
 
-    attr_accessor :res
+    attr_accessor :res, :xml
 
     def call
       self.res = ::Net::HTTP.get_response(uri)
+      self.xml = Nokogiri::XML(res.body)
+
+      self
     end
 
     private
