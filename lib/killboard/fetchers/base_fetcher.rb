@@ -27,10 +27,7 @@ module Fetchers
     end
 
     def params
-      {
-        keyID: ENV.fetch('EVE_API_KEY_ID'),
-        vCode: ENV.fetch('EVE_API_V_CODE')
-      }
+      fail NotImplementedError
     end
   end
 end
