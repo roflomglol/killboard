@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Parsers::XML::KillmailParser, :focus do
+RSpec.describe Parsers::XML::KillmailParser do
   let(:xml_row) do
     <<~EOS
       <row killID="63937722" solarSystemID="30003276" killTime="2017-08-07 23:21:50" moonID="0">
@@ -60,6 +60,73 @@ RSpec.describe Parsers::XML::KillmailParser, :focus do
 
       specify 'damage_taken' do
         expect(subject.fetch(:damage_taken)).to eq(461)
+      end
+    end
+  end
+
+  describe '#attackers', :focus do
+    subject { parser.attackers }
+
+    specify 'size' do
+      expect(subject.size).to eq(6)
+    end
+
+    describe 'attacker' do
+      subject { parser.attackers.first }
+
+      describe 'keys' do
+        specify 'character_id' do
+          expect(subject.fetch(:character_id)).to eq(93235769)
+        end
+
+        specify 'character_name' do
+          expect(subject.fetch(:character_name)).to eq('Ark Zxr')
+        end
+
+        specify 'corporationID' do
+          expect(subject.fetch(:corporation_id)).to eq(497926671)
+        end
+
+        specify 'corporation_name' do
+          expect(subject.fetch(:corporation_name)).to eq("Unleashed' Fury")
+        end
+
+
+        specify 'alliance_id' do
+          expect(subject.fetch(:alliance_id)).to eq(1900696668)
+        end
+
+        specify 'alliance_name' do
+          expect(subject.fetch(:alliance_name)).to eq('The Initiative.')
+        end
+
+        specify 'faction_id' do
+          expect(subject.fetch(:faction_id)).to eq(0)
+        end
+
+        specify 'faction_name' do
+          expect(subject.fetch(:faction_name)).to eq('')
+        end
+
+        specify 'security_status' do
+          expect(subject.fetch(:security_status)).to eq(4.3038654000613)
+        end
+
+        specify 'damage_done' do
+          expect(subject.fetch(:damage_done)).to eq(136)
+        end
+
+        specify 'final_blow' do
+          expect(subject.fetch(:final_blow)).to eq(1)
+        end
+
+        specify 'weapon_type_id' do
+          expect(subject.fetch(:weapon_type_id)).to eq(2873)
+        end
+
+        specify 'ship_type_id' do
+          expect(subject.fetch(:ship_type_id)).to eq(22456)
+        end
       end
     end
   end
