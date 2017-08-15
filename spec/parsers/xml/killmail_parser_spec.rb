@@ -130,4 +130,38 @@ RSpec.describe Parsers::XML::KillmailParser do
       end
     end
   end
+
+  describe '#items' do
+    subject { parser.items }
+
+    specify 'size' do
+      expect(subject.size).to eq(2)
+    end
+
+    describe 'item' do
+      subject { parser.items.first }
+
+      describe 'keys' do
+        specify 'type_id' do
+          expect(subject.fetch(:type_id)).to eq(13283)
+        end
+
+        specify 'flag' do
+          expect(subject.fetch(:flag)).to eq(89)
+        end
+
+        specify 'qty_dropped' do
+          expect(subject.fetch(:qty_dropped)).to eq(0)
+        end
+
+        specify 'qty_destroyed' do
+          expect(subject.fetch(:qty_destroyed)).to eq(1)
+        end
+
+        specify 'singleton' do
+          expect(subject.fetch(:singleton)).to eq(0)
+        end
+      end
+    end
+  end
 end

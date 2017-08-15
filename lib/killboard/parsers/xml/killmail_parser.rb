@@ -30,6 +30,12 @@ module Parsers
         attackers_xml.map(&method(:parse_attacker))
       end
 
+      def items
+        items_xml = xml.xpath('//*[@name="items"]/row')
+
+        items_xml.map(&method(:parse_item))
+      end
+
       private
 
       def parse_attacker(attacker_xml)
@@ -47,6 +53,16 @@ module Parsers
           final_blow: attacker_xml.attribute('finalBlow').value.to_i,
           weapon_type_id: attacker_xml.attribute('weaponTypeID').value.to_i,
           ship_type_id: attacker_xml.attribute('shipTypeID').value.to_i
+        }
+      end
+
+      def parse_item(item_xml)
+        {
+          type_id: item_xml.attribute('typeID').value.to_i,
+          flag: item_xml.attribute('flag').value.to_i,
+          qty_dropped: item_xml.attribute('qtyDropped').value.to_i,
+          qty_destroyed: item_xml.attribute('qtyDestroyed').value.to_i,
+          singleton: item_xml.attribute('singleton').value.to_i
         }
       end
     end
