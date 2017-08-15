@@ -64,7 +64,7 @@ RSpec.describe Parsers::XML::KillmailParser do
     end
   end
 
-  describe '#attackers', :focus do
+  describe '#attackers' do
     subject { parser.attackers }
 
     specify 'size' do
