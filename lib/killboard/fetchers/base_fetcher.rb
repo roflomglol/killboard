@@ -1,3 +1,5 @@
+require 'net/http'
+
 module Fetchers
   class BaseFetcher
     class_attribute :host, :path
@@ -8,7 +10,7 @@ module Fetchers
 
     def call
       self.res = ::Net::HTTP.get_response(uri)
-      self.xml = Nokogiri::XML(res.body)
+      self.xml = res.body
 
       self
     end
