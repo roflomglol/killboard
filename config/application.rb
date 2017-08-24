@@ -30,5 +30,8 @@ module Killboard
     config.api_only = true
 
     config.autoload_paths << Rails.root.join('lib', 'killboard')
+
+    config.active_job.queue_adapter     = :sidekiq
+    config.active_job.queue_name_prefix = 'killboard_#{Rails.env}'
   end
 end

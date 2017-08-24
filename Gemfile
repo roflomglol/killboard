@@ -13,6 +13,8 @@ gem 'pg', '~> 0.18'
 
 gem 'nokogiri'
 
+gem 'sidekiq'
+
 gem 'ruby-progressbar'
 
 group :development, :test do
