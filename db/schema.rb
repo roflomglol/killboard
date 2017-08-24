@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20170713133523) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "involvements", force: :cascade do |t|
+  create_table "involved_parties", force: :cascade do |t|
     t.integer "pilot_id"
     t.integer "killmail_id"
     t.datetime "created_at", null: false
