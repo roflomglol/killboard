@@ -16,6 +16,8 @@ class Killmail < ApplicationRecord
   # == Callbacks ============================================================
 
   # == Class Methods ========================================================
-
+  def self.last_origin_id
+    last.origin_id
+  end
   # == Instance Methods =====================================================
 end
