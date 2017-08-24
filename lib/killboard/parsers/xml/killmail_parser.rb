@@ -8,6 +8,14 @@ module Parsers
         @xml = Nokogiri::XML(xml)
       end
 
+      def call
+        {
+          victim: victim,
+          attackers: attackers,
+          items: items
+        }
+      end
+
       def victim
         victim_xml = xml.xpath('/row/victim')
 
