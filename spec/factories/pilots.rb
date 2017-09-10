@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :pilot do
-    name "MyString"
-    corporation "MyString"
-    alliance "MyString"
+    name 'Ex Error'
+    sequence(:origin_id)
   end
 end
