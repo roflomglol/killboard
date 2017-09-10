@@ -9,6 +9,7 @@ class Pilot < ApplicationRecord
   has_many :involved_parties
   # == Validations ==========================================================
   validates :name, presence: true, uniqueness: true
+  validates :origin_id, presence: true, uniqueness: true
   # == Scopes ===============================================================
 
   # == Callbacks ============================================================
