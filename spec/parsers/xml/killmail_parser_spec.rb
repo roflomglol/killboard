@@ -26,12 +26,12 @@ RSpec.describe Parsers::XML::KillmailParser do
     subject { parser.victim }
 
     describe 'keys' do
-      specify 'character_id' do
-        expect(subject.fetch(:character_id)).to eq(614389879)
+      specify 'pilot_id' do
+        expect(subject.fetch(:pilot_id)).to eq(614389879)
       end
 
-      specify 'character_name' do
-        expect(subject.fetch(:character_name)).to eq('TROUB1')
+      specify 'pilot_name' do
+        expect(subject.fetch(:pilot_name)).to eq('TROUB1')
       end
 
       specify 'corporation_id' do
@@ -75,12 +75,12 @@ RSpec.describe Parsers::XML::KillmailParser do
       subject { parser.attackers.first }
 
       describe 'keys' do
-        specify 'character_id' do
-          expect(subject.fetch(:character_id)).to eq(93235769)
+        specify 'pilot_id' do
+          expect(subject.fetch(:pilot_id)).to eq(93235769)
         end
 
-        specify 'character_name' do
-          expect(subject.fetch(:character_name)).to eq('Ark Zxr')
+        specify 'pilot_name' do
+          expect(subject.fetch(:pilot_name)).to eq('Ark Zxr')
         end
 
         specify 'corporationID' do

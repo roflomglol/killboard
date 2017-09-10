@@ -20,8 +20,8 @@ module Parsers
         victim_xml = xml.xpath('/row/victim')
 
         {
-          character_id: victim_xml.attribute('characterID').value.to_i,
-          character_name: victim_xml.attribute('characterName').value,
+          pilot_id: victim_xml.attribute('characterID').value.to_i,
+          pilot_name: victim_xml.attribute('characterName').value,
           corporation_id: victim_xml.attribute('corporationID').value.to_i,
           corportaion_name: victim_xml.attribute('corporationName').value,
           alliance_id: victim_xml.attribute('allianceID').value.to_i,
@@ -48,8 +48,8 @@ module Parsers
 
       def parse_attacker(attacker_xml)
         {
-          character_id: attacker_xml.attribute('characterID').value.to_i,
-          character_name: attacker_xml.attribute('characterName').value,
+          pilot_id: attacker_xml.attribute('characterID').value.to_i,
+          pilot_name: attacker_xml.attribute('characterName').value,
           corporation_id: attacker_xml.attribute('corporationID').value.to_i,
           corporation_name: attacker_xml.attribute('corporationName').value,
           alliance_id: attacker_xml.attribute('allianceID').value.to_i,
