@@ -9,6 +9,7 @@ class Killmail < ApplicationRecord
   belongs_to :victim, class_name: 'Pilot'
 
   has_many :involved_parties
+  has_many :attackers, through: :involved_parties, source: :pilot
   # == Validations ==========================================================
 
   # == Scopes ===============================================================
